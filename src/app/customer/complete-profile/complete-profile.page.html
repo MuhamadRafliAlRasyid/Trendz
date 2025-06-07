@@ -1,0 +1,47 @@
+<ion-content class="ion-padding auth-content">
+  <div class="title-section">
+    <h1 class="main-title">COMPLETE YOUR <br>PROFILE</h1>
+  </div>
+
+  <div class="profile-container">
+    <div class="profile-circle">
+      <img src="assets/img/default-profile.png" alt="Profile" class="profile-image" />
+      <ion-button fill="clear" class="edit-button">
+        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+
+  <ion-list class="form-list ion-no-margin ion-no-padding">
+    <ion-label class="input-label">Username</ion-label>
+    <ion-item lines="none" class="input-item">
+      <ion-input type="text" placeholder="Luthfi" class="custom-input"></ion-input>
+    </ion-item>
+
+    <ion-label class="input-label">Email</ion-label>
+    <ion-item lines="none" class="input-item">
+      <ion-input type="email" placeholder="example@gmail.com" class="custom-input"></ion-input>
+    </ion-item>
+
+    <ion-label class="input-label">Phone Number</ion-label>
+    <ion-item lines="none" class="input-item">
+      <ion-input type="text" placeholder="+628123123123" class="custom-input"></ion-input>
+    </ion-item>
+
+    <ion-label class="input-label">Gender</ion-label>
+    <ion-item lines="none" class="input-item">
+      <ion-select class="custom-input" placeholder="Select Gender">
+        <ion-select-option value="male">Male</ion-select-option>
+        <ion-select-option value="female">Female</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div class="terms-and-auth">
+    <ion-button expand="block" class="auth-button" (click)="onCompleteProfile()">
+      Complete Profile
+    </ion-button>
+  </div>
+
+</ion-content>
+

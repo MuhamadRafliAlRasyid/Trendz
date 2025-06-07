@@ -1,0 +1,19 @@
+.splash-content {
+  --background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Gunakan viewport height, bukan 100% */
+  width: 100vw;  /* Tambahkan juga lebar penuh */
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container img {
+  width: 300px;
+  height: auto;
+}

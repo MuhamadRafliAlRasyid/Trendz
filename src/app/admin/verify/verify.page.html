@@ -1,0 +1,61 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding auth-content">
+  <div class="title-section">
+    <h1 class="main-title">VERIFY<br />ACCOUNT</h1>
+    <p class="subtitle">
+      Please enter the code we just sent to email <br />
+      <strong>{{ email }}</strong>
+    </p>
+  </div>
+
+  <div class="otp-wrapper">
+    <input
+      type="text"
+      maxlength="1"
+      class="otp-input"
+      placeholder="-"
+      [(ngModel)]="otp1"
+      (input)="moveToNext($event, otp2Input)"
+    />
+    <input
+      type="text"
+      maxlength="1"
+      class="otp-input"
+      placeholder="-"
+      [(ngModel)]="otp2"
+      #otp2Input
+      (input)="moveToNext($event, otp3Input)"
+    />
+    <input
+      type="text"
+      maxlength="1"
+      class="otp-input"
+      placeholder="-"
+      [(ngModel)]="otp3"
+      #otp3Input
+      (input)="moveToNext($event, otp4Input)"
+    />
+    <input
+      type="text"
+      maxlength="1"
+      class="otp-input"
+      placeholder="-"
+      [(ngModel)]="otp4"
+      #otp4Input
+    />
+  </div>
+
+  <p class="resend-wrapper">
+    Didn't get a code? <br />
+    <span class="resend-code" (click)="resendVerification()">Resend code</span>
+  </p>
+
+  <div class="terms-and-auth">
+    <ion-button expand="block" class="auth-button" (click)="onVerify()">
+      Verify
+    </ion-button>
+  </div>
+</ion-content>

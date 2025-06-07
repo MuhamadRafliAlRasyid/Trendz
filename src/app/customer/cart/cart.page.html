@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <div class="segment-wrapper">
+      <ion-segment
+        [(ngModel)]="selectedTab"
+        class="custom-segment"
+        (ionChange)="onSegmentChanged($event)"
+      >
+        <ion-segment-button value="cart">
+          <ion-label>Cart ({{ cart.length }})</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="wishlist">
+          <ion-label>Wishlist ({{ wishlist.length }})</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <div class="action-icons">
+        <ion-icon name="create-outline" class="icon-btn"></ion-icon>
+        <ion-icon
+          name="close-circle-outline"
+          class="icon-btn"
+          (click)="navigateTo('/home')"
+        ></ion-icon>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="cart-content">
+  <!-- CART TAB -->
+  <div *ngIf="selectedTab === 'cart'" class="cart-tab">
+    <ion-list lines="none">
+      <ion-item *ngFor="let item of cart" class="cart-item">
+        <ion-thumbnail slot="start">
+          <img [src]="item.product.image" (error)="onImageError($event)" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ item.product?.name }}</h2>
+          <p class="price">IDR {{ item.product?.price | number:'1.0-0' }}</p>
+          <p class="detail">{{ item.quantity }} item</p>
+
+          <div class="quantity-control">
+            <ion-button
+              size="small"
+              (click)="updateQuantity(item, item.quantity - 1)"
+              [disabled]="item.quantity <= 1"
+              >-</ion-button
+            >
+            <span>{{ item.quantity }}</span>
+            <ion-button
+              size="small"
+              (click)="updateQuantity(item, item.quantity + 1)"
+              >+</ion-button
+            >
+          </div>
+
+          <div class="icon-actions">
+            <ion-icon
+              name="heart-outline"
+              (click)="addToWishlist(item)"
+            ></ion-icon>
+            <ion-icon
+              name="create-outline"
+              (click)="viewProduct(item.product?.id)"
+            ></ion-icon>
+            <ion-icon
+              name="trash-outline"
+              (click)="removeFromCart(item)"
+            ></ion-icon>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <div class="cart-footer">
+      <div class="total-text">
+        <p>Total</p>
+        <h2>IDR {{ totalPrice | number:'1.0-0' }}</h2>
+      </div>
+      <ion-button expand="block" (click)="navigateTo('/payment')">
+        Process order
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- WISHLIST TAB -->
+  <div *ngIf="selectedTab === 'wishlist'" class="wishlist-tab">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let item of wishlist">
+          <ion-card class="wishlist-card">
+            <img [src]="item.image || 'assets/default.jpg'" />
+            <ion-icon name="heart" class="heart-icon"></ion-icon>
+            <ion-card-content>
+              <h3>{{ item.name }}</h3>
+              <p><strong>IDR {{ item.price | number:'1.0-0' }}</strong></p>
+              <ion-button expand="block" size="small" (click)="addToCart(item)">
+                Add to cart
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

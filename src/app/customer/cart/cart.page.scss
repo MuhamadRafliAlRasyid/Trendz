@@ -1,0 +1,212 @@
+/* Perubahan untuk latar belakang form */
+.custom-toolbar {
+  --background: var(--ion-background-color);
+  padding: 0;
+
+  .segment-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 8px;
+  }
+
+  .custom-segment {
+    ion-segment-button {
+      ion-label {
+        color: var(--ion-color-primary-contrast);
+      }
+
+      &.segment-button-checked {
+        ion-label {
+          color: var(--ion-color-primary);
+        }
+      }
+    }
+  }
+
+  .action-icons {
+    display: flex;
+    gap: 15px;
+    padding-left: 8px;
+
+    .icon-btn {
+      font-size: 22px;
+      color: var(--ion-color-primary-contrast);
+    }
+  }
+}
+
+.cart-content {
+  --background: #f0f0f0; /* Ganti latar belakang form menjadi lebih terang */
+  padding: 10px;
+
+  ion-item {
+    --padding-start: 8px;
+    align-items: flex-start;
+  }
+
+  .cart-tab {
+    padding-bottom: 80px;
+    --background: #ffffff; /* Background putih agar teks lebih jelas */
+
+    .list-md {
+      background: #ffffff; /* Ganti background menjadi putih */
+      padding: 8px 15px;
+    }
+
+    .item-native {
+      --background: #ffffff !important; /* Pastikan item menggunakan background putih */
+    }
+
+    ion-thumbnail {
+      min-width: 90px;
+      min-height: 150px;
+
+      img {
+        width: 100px;
+        height: 150px;
+        object-fit: cover;
+      }
+    }
+
+    h2 {
+      margin: 0 0 4px 0;
+      font-size: .9rem;
+      color: var(--ion-color-dark); /* Ganti warna teks menjadi lebih gelap */
+      font-weight: lighter;
+    }
+
+    .price {
+      margin: 0 0 4px 0;
+      font-size: .9rem;
+      color: var(--ion-color-dark); /* Ganti warna teks menjadi lebih gelap */
+      font-weight: bold;
+    }
+
+    .detail {
+      margin: 0 0 8px 0;
+      font-size: .9rem;
+      color: #666;
+      font-weight: normal;
+    }
+  }
+
+  .wishlist-tab {
+    padding: .1rem;
+
+    ion-grid {
+      padding: .1rem;
+
+      ion-card {
+        --background: #ffffff; /* Ganti background menjadi putih */
+
+        .heart-icon {
+          color: red;
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          font-size: 25px;
+        }
+      }
+    }
+
+    ion-button {
+      --background: #1E1E1E;
+      --background-activated: #333333;
+      --background-focused: #333333;
+      --background-hover: #333333;
+      --color: #ffffff;
+      font-size: .9rem;
+      text-transform: none;
+      --border-radius: 10px;
+      margin-top: auto;
+      margin-bottom: 10px;
+      .button-inner {
+        height: auto !important;
+      }
+    }
+  }
+
+  .icon-actions {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: flex;
+    gap: 25px;
+    margin-top: 8px;
+
+    ion-icon {
+      font-size: 1.2rem;
+      color: var(--ion-color-primary-contrast);
+    }
+  }
+
+  .cart-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: #ffffff; /* Ganti latar belakang footer menjadi putih */
+    border-top: 1px solid #ccc;
+    z-index: 10;
+
+    .total-text {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+    }
+
+    ion-button {
+      --background: #1E1E1E;
+      --background-activated: #333333;
+      --background-focused: #333333;
+      --background-hover: #333333;
+      --color: #ffffff;
+      font-size: .9rem;
+      text-transform: none;
+      --border-radius: 10px;
+      margin-top: auto;
+      margin-bottom: 10px;
+      .button-inner {
+        height: auto !important;
+      }
+    }
+  }
+
+  .wishlist-card {
+    img {
+      height: 140px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    h3 {
+      margin: 0 0 4px 0;
+      font-size: .8rem;
+      color: var(--ion-color-dark); /* Ganti warna teks menjadi lebih gelap */
+      font-weight: lighter;
+    }
+
+    p {
+      margin: 0 0 8px 0;
+      font-size: .8rem;
+      color: var(--ion-color-dark); /* Ganti warna teks menjadi lebih gelap */
+      font-weight: bold;
+    }
+  }
+}

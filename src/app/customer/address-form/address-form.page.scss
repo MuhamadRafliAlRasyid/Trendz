@@ -1,0 +1,33 @@
+ion-content {
+  --background: #5979f5;
+  background: #5979f5;
+}
+
+ion-item {
+  --background: #ffffff; /* item tetap putih agar form readable */
+  --color: #000000;
+  background: #ffffff;
+  color: #000000;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  height: auto;
+}
+
+ion-label {
+  color: #000000;
+  font-weight: 500;
+}
+
+ion-input,
+ion-select,
+ion-textarea {
+  --background: #ffffff;
+  --color: #000000;
+  color: #000000;
+}
+
+ion-button {
+  --background: #ffffff;
+  --color: #5979f5;
+  font-weight: bold;
+}

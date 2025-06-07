@@ -1,0 +1,114 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Dark Mode Preference Based */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+/* ----------------------------------------------------
+   Custom Global Variables (Primary Color)
+---------------------------------------------------- */
+:root {
+  --ion-color-primary: #5979f5;
+  --ion-color-primary-rgb: 89, 121, 245;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #506cdc;
+  --ion-color-primary-tint: #6a89f6;
+}
+
+/* ----------------------------------------------------
+   Global Styling
+---------------------------------------------------- */
+
+/* Background for body */
+body {
+  background-color: #f8f9fc;
+  font-family: "Roboto", "Segoe UI", sans-serif;
+}
+
+/* Default for headers */
+ion-toolbar {
+  --background: #ffffff;
+  --color: #000000;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer tab styling */
+ion-tab-bar {
+  --background: #ffffff;
+  border-top: 1px solid #e0e0e0;
+
+  ion-tab-button {
+    --color: #888;
+    --color-selected: var(--ion-color-primary);
+  }
+}
+
+/* Buttons */
+ion-button {
+  --background: var(--ion-color-primary);
+  --color: white;
+  text-transform: none;
+  font-weight: 500;
+}
+
+/* Segment buttons */
+ion-segment-button {
+  --color: #444;
+  --color-checked: var(--ion-color-primary);
+  --indicator-color: var(--ion-color-primary);
+}
+
+/* Inputs & Searchbars */
+ion-input,
+ion-textarea,
+ion-searchbar {
+  --color: #000;
+  --background: #fff;
+  border-radius: 8px;
+}
+
+/* Override modal content */
+ion-modal {
+  --background: #fff;
+  --border-radius: 12px;
+}
+
+/* Default image styling */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Default spacing helpers */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.text-center { text-align: center; }
+

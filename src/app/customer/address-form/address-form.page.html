@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tambah Alamat</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/profile"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="submitForm()" [formGroup]="addressForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Nama Penerima</ion-label>
+        <ion-input formControlName="receiver_name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Nomor Telepon</ion-label>
+        <ion-input type="tel" formControlName="phone"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Provinsi</ion-label>
+        <ion-select
+          formControlName="province"
+          (ionChange)="onProvinceChange($event.detail.value)"
+        >
+          <ion-select-option *ngFor="let prov of provinces" [value]="prov.name">
+            {{ prov.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="cities.length > 0">
+        <ion-label position="stacked">Kota/Kabupaten</ion-label>
+        <ion-select
+          formControlName="city"
+          (ionChange)="onCityChange($event.detail.value)"
+        >
+          <ion-select-option *ngFor="let city of cities" [value]="city.name">
+            {{ city.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="districts.length > 0">
+        <ion-label position="stacked">Kecamatan</ion-label>
+        <ion-select
+          formControlName="district"
+          (ionChange)="onDistrictChange($event.detail.value)"
+        >
+          <ion-select-option *ngFor="let dist of districts" [value]="dist.name">
+            {{ dist.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="villages.length > 0">
+        <ion-label position="stacked">Kelurahan</ion-label>
+        <ion-select formControlName="village">
+          <ion-select-option *ngFor="let vill of villages" [value]="vill.name">
+            {{ vill.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Kode Pos</ion-label>
+        <ion-input formControlName="postal_code"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Detail Alamat</ion-label>
+        <ion-textarea formControlName="detail"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" type="submit" [disabled]="addressForm.invalid">
+      Simpan Alamat
+    </ion-button>
+  </form>
+</ion-content>

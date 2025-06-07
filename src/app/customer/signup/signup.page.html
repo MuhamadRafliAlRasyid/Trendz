@@ -1,0 +1,85 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" class="back-button" (click)="goToLogin()">
+        <ion-icon
+          slot="icon-only"
+          name="chevron-back-outline"
+          color="dark"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" class="header-link" (click)="goToLogin()"
+        >Log In</ion-button
+      >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding auth-content">
+  <div class="title-section">
+    <h1 class="main-title">REGISTER ACCOUNT</h1>
+    <p class="subtitle">Fill in the label according to your identity</p>
+  </div>
+
+  <ion-list class="form-list ion-no-margin ion-no-padding">
+    <ion-label class="input-label">Username</ion-label>
+    <ion-item lines="none" class="input-item">
+      <ion-input
+        type="text"
+        placeholder="Luthfi"
+        class="custom-input"
+        [(ngModel)]="username"
+      ></ion-input>
+    </ion-item>
+
+    <ion-label class="input-label">Email</ion-label>
+    <ion-item lines="none" class="input-item">
+      <ion-input
+        type="email"
+        placeholder="example@gmail.com"
+        class="custom-input"
+        [(ngModel)]="email"
+      ></ion-input>
+    </ion-item>
+
+    <ion-label class="input-label">Password</ion-label>
+    <ion-item lines="none" class="input-item">
+      <ion-input
+        type="password"
+        placeholder="••••••••••••"
+        class="custom-input"
+        [(ngModel)]="password"
+      ></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-label class="input-label">Confirm Password</ion-label>
+  <ion-item lines="none" class="input-item">
+    <ion-input
+      type="password"
+      placeholder="••••••••••••"
+      class="custom-input"
+      [(ngModel)]="password_confirmation"
+    ></ion-input>
+  </ion-item>
+
+  <div class="terms-and-auth">
+    <ion-item lines="none" class="terms-item">
+      <ion-checkbox
+        slot="start"
+        class="terms-checkbox"
+        [(ngModel)]="acceptedTerms"
+      ></ion-checkbox>
+      <ion-label class="terms-label"
+        >By registering your account, you accept our Terms & Conditions and
+        Privacy Policy.</ion-label
+      >
+    </ion-item>
+
+    <ion-button expand="block" class="auth-button" (click)="onRegister()"
+      >Register</ion-button
+    >
+  </div>
+</ion-content>

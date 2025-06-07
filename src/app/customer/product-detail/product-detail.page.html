@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ product?.name || 'Detail Produk' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!isLoading && product; else loading">
+  <ion-img [src]="product.image" alt="{{ product.name }}"></ion-img>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ product.name }}</ion-card-title>
+      <ion-card-subtitle>
+        IDR {{ product.price | number:'1.0-0' }}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ product.description || 'Tidak ada deskripsi.' }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" color="primary" (click)="addToCart()">
+    Add to Cart
+  </ion-button>
+
+  <ion-button expand="block" fill="outline" color="danger"
+    >Add to Wishlist
+  </ion-button>
+</ion-content>
+
+<ng-template #loading>
+  <ion-content>
+    <ion-spinner name="crescent" class="ion-padding"></ion-spinner>
+    <p class="ion-text-center">Memuat produk...</p>
+  </ion-content>
+</ng-template>

@@ -1,0 +1,131 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Payment</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="checkout-content">
+    <!-- Shipping Address Section -->
+    <div class="shipping-address">
+      <ion-icon name="location-outline"></ion-icon>
+      <div class="address-text">
+        <p class="name">{{ address.receiver_name }} +{{ address.phone }}</p>
+        <p class="address">
+          {{ address.detail }},<br />
+          {{ address.district }}, {{ address.city }},<br />
+          {{ address.province }}, {{ address.postal_code }}<br />
+        </p>
+      </div>
+
+      <!-- Change Address Button -->
+      <ion-button expand="full" (click)="changeAddress()"
+        >Change Address</ion-button
+      >
+    </div>
+
+    <!-- Product List -->
+    <div class="product-list">
+      <div class="product-item" *ngFor="let item of cart">
+        <img [src]="item.product.image || 'assets/default.jpg'" />
+        <div class="product-details">
+          <p class="product-name">{{ item.product.name }}</p>
+          <p class="product-price">IDR {{ item.product.price | number }}</p>
+          <p class="product-meta">
+            {{ item.quantity }} item | {{ item.product.size }} | {{
+            item.product.color }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Section for Vouchers and Message -->
+    <div class="form-section">
+      <div class="form-row">
+        <ion-icon name="pricetags-outline"></ion-icon>
+        <span>Shop Voucher</span>
+        <input
+          type="text"
+          placeholder="Input your voucher..."
+          class="custom-input"
+        />
+      </div>
+
+      <div class="form-row">
+        <ion-icon name="mail-outline"></ion-icon>
+        <span>Message</span>
+        <input
+          type="text"
+          placeholder="Input your message..."
+          class="custom-input"
+        />
+      </div>
+
+      <div class="form-row">
+        <ion-icon name="car-outline"></ion-icon>
+        <span>Shipping options</span>
+        <div class="right">
+          <span>View all</span>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </div>
+      </div>
+
+      <ion-card class="shipping-box">
+        <ion-card-content>
+          <div class="shipping-header">
+            <span class="method">Regular</span>
+            <span class="price">IDR 10,000</span>
+          </div>
+          <p class="shipping-sub">Guaranteed to get by 5 - 6 May</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Payment Summary Section -->
+    <div class="payment-summary">
+      <div class="row bold">
+        <span>Total {{ cart.length }} Item(s)</span>
+        <span>IDR {{ subtotal | number }}</span>
+      </div>
+
+      <div class="row">
+        <span>Payment options</span>
+        <span
+          >Bank Transfer– Bank BCA
+          <ion-icon name="chevron-forward-outline"></ion-icon
+        ></span>
+      </div>
+
+      <div class="row section-title">Payment details</div>
+      <div class="row">
+        <span>Merchandise subtotal</span>
+        <span>IDR {{ subtotal | number }}</span>
+      </div>
+      <div class="row">
+        <span>Shipping subtotal</span>
+        <span>IDR {{ shipping | number }}</span>
+      </div>
+      <div class="row">
+        <span>Buyer service fee</span>
+        <span>IDR {{ serviceFee | number }}</span>
+      </div>
+
+      <div class="row total">
+        <span>Total payment</span>
+        <span>IDR {{ total | number }}</span>
+      </div>
+
+      <div class="total-footer">
+        <span>Total</span>
+        <span>IDR {{ total | number }}</span>
+      </div>
+
+      <ion-button expand="block" class="place-order" (click)="placeOrder()"
+        >Place order</ion-button
+      >
+    </div>
+  </div>
+</ion-content>

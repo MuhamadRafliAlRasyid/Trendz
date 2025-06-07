@@ -1,0 +1,24 @@
+.splash-screen-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  --background: #ffffff;
+}
+
+.splash-box {
+  padding: 16px;
+}
+
+.splash-message {
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: 'Georgia', serif;
+  color: #111;
+  margin-bottom: 20px;
+}
+
+.splash-check-icon {
+  width: 70px;
+  height: 70px;
+}

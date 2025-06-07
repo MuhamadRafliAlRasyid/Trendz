@@ -1,0 +1,224 @@
+ion-toolbar {
+  --background: var(--ion-background-color);
+}
+
+.back-button {
+  --padding-start: 3px;
+  --padding-end: 3px;
+  --padding-top: 3px;
+  --padding-bottom: 3px;
+  --border-radius: 50%;
+  --box-shadow: none;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon {
+    font-size: 12px !important;
+    color: var(--ion-color-dark);
+  }
+}
+
+.header-link {
+  font-size: 1rem;
+  color: var(--ion-color-primary);
+  font-weight: bolder;
+  text-transform: none;
+}
+
+.auth-content {
+  --background: var(--ion-background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.profile-circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #000;
+}
+
+.edit-button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  --ion-color-base: transparent;
+}
+
+.title-section {
+  text-align: left;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.main-title {
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #000000;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.subtitle {
+  font-family: 'Georgia', sans-serif;
+  font-size: 0.7rem;
+  color: #555555;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.form-list {
+  background: transparent;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+
+.input-label {
+  font-family: 'Georgia', sans-serif;
+  font-weight: bold;
+  font-size: 0.7rem;
+  color: #333333;
+  margin: 6px 0 3px 0;
+  display: block;
+}
+
+.input-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --background: transparent;
+  --highlight-color-focused: var(--ion-color-primary);
+  --border-color: #cccccc;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  margin-bottom: 8px;
+  height: 35px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-input {
+  font-family: 'Georgia', sans-serif;
+  font-size: 0.7rem;
+  color: #000000;
+  width: 100%;
+  height: 100%;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+
+  &::placeholder {
+    color: #aaaaaa;
+    font-size: 0.7rem;
+  }
+
+  &::part(native) {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+  }
+}
+
+.terms-and-auth {
+  margin-top: 40px;
+}
+
+.terms-item {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --inner-padding-end: 0;
+  --background: transparent;
+  align-items: flex-start;
+  top: 10px;
+}
+
+.terms-checkbox {
+  margin-top: 2px;
+  margin-inline-end: 10px;
+  --size: 16px;
+  --checkmark-color: white;
+  --background: transparent;
+  --background-checked: #4A00E0;
+  --border-color: #767676;
+  --border-radius: 3px;
+  align-self: flex-start;
+  --checkbox-background: transparent;
+}
+
+.terms-label {
+  font-family: 'Georgia', sans-serif;
+  font-size: 0.7rem;
+  color: #555555;
+  white-space: normal;
+  line-height: 1.5;
+  margin: 0px;
+}
+
+.auth-button {
+  --background: #1E1E1E;
+  --background-activated: #333333;
+  --background-focused: #333333;
+  --background-hover: #333333;
+  --color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: none;
+  --border-radius: 8px;
+  height: 50px;
+  margin-top: auto;
+  margin-bottom: 10px;
+  .button-inner {
+    height: auto !important;
+  }
+}
+
+ion-content.ion-padding {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}
+
+ion-header.ion-no-border ion-toolbar {
+    --border-width: 0;
+}
+
+.back-button {
+    --padding-start: 0;
+    --padding-end: 0;
+    ion-icon {
+        background-color: #000000;
+        color: #ffffff;
+        border-radius: 50%;
+        padding: 6px;
+        font-size: 1.2rem;
+    }
+}
+

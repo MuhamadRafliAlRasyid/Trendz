@@ -1,0 +1,66 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" class="header-link" (click)="goToSignup()">
+        Create an Account
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding auth-content">
+  <div class="title-section">
+    <h1 class="main-title">LOGIN</h1>
+    <p class="subtitle">
+      Enter your email account and password to browse Tren-z collection
+    </p>
+  </div>
+
+  <ion-list class="form-list ion-no-margin ion-no-padding">
+    <!-- Email Input -->
+    <ion-item lines="none" class="input-item">
+      <ion-input
+        type="email"
+        placeholder="Email"
+        class="custom-input"
+        [(ngModel)]="email"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <!-- Password Input -->
+    <ion-item lines="none" class="input-item">
+      <ion-input
+        type="password"
+        placeholder="Password"
+        class="custom-input"
+        [(ngModel)]="password"
+        required
+      ></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-item lines="none" class="stay-signed-item">
+    <!-- Stay Signed In Checkbox -->
+    <ion-checkbox slot="start" class="stay-checkbox"></ion-checkbox>
+    <ion-label class="stay-label">Stay signed in</ion-label>
+    <ion-label class="forgot-label" slot="end" (click)="goToForgotPassword()">
+      Forgot password?
+    </ion-label>
+  </ion-item>
+
+  <!-- Terms and Login Button -->
+  <div class="terms-and-auth">
+    <ion-item lines="none" class="terms-item">
+      <ion-label class="terms-label">
+        By signing in, you accept our
+        <a href="/terms">Terms & Conditions</a> and
+        <a href="/privacy">Privacy Policy</a>.
+      </ion-label>
+    </ion-item>
+
+    <ion-button expand="block" class="auth-button" (click)="onLogin()">
+      Login
+    </ion-button>
+  </div>
+</ion-content>
