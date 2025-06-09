@@ -18,25 +18,30 @@ export class LoginAdminPage {
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
-    // Cek apakah email dan password telah diisi
-    if (!this.email || !this.password) {
-      alert('Please fill in all fields.');
-      return;
-    }
-
-    const credentials = { email: this.email, password: this.password };
-
-    // Panggil AuthService untuk login admin
-    this.authService.loginAdmin(credentials).subscribe({
-      next: (res) => {
-        alert('Admin login successful!');
-        this.authService.saveUser(res.data);  // Simpan data pengguna dan token
-        this.router.navigate(['/admin/dashboard']);  // Arahkan ke halaman dashboard admin setelah berhasil login
-      },
-      error: (err) => {
-        console.error('Login failed', err);  // Log error jika login gagal
-        alert(err.error?.message || 'Login failed.');
-      }
-    });
+  // Cek apakah email dan password telah diisi
+  if (!this.email || !this.password) {
+    alert('Please fill in all fields.');
+    return;
   }
+
+  const credentials = { email: this.email, password: this.password };
+
+  // Panggil AuthService untuk login admin
+  this.authService.loginAdmin(credentials).subscribe({
+    next: (res) => {
+      alert('Admin login successful!');
+      this.authService.saveUser(res.data);  // Simpan data pengguna dan token
+      this.router.navigateByUrl('/admin/dashboard')
+  .then(success => console.log('Navigation success:', success))
+  .catch(err => console.error('Navigation failed:', err));
+
+  // Arahkan ke halaman dashboard admin setelah berhasil login
+    },
+    error: (err) => {
+      console.error('Login failed', err);  // Log error jika login gagal
+      alert(err.error?.message || 'Login failed.');
+    }
+  });
+}
+
 }

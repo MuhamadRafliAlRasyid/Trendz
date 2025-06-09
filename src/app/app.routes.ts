@@ -3,17 +3,28 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   // Admin routes
   {
-    path: 'admin-home',
+    path: 'admin/dashboard',
     loadComponent: () => import('./admin/admin-home/admin-home.page').then(m => m.AdminHomePage),
   },
   {
-    path: 'admin-register',
+    path: 'admin/register',
     loadComponent: () => import('./admin/register-admin/register-admin.page').then(m => m.RegisterAdminPage),
   },
   {
-    path: 'admin-login',
+    path: 'admin/login',
     loadComponent: () => import('./admin/login-admin/login-admin.page').then(m => m.LoginAdminPage),
   },
+  {
+  path: 'admin-category',
+  loadComponent: () => import('./admin/admin-category/admin-category.page').then(m => m.AdminCategoryPage),
+},
+{
+  path: 'admin-product',
+  loadComponent: () => import('./admin/admin-product/admin-product.page').then(m => m.AdminProductPage)
+},
+
+
+
   // Admin management routes
   {
     path: 'product-management',
@@ -101,7 +112,9 @@ export const routes: Routes = [
     import('./customer/address-selection/address-selection.page').then(
       (m) => m.AddressSelectionPage
     ),
-}
-
-
+  },
+  {
+    path: 'checkout',
+    loadComponent: () => import('./customer/checkout/checkout.page').then( m => m.CheckoutPage)
+  },
 ];

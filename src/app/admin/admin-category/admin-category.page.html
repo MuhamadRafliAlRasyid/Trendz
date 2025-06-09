@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Kategori</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="full" routerLink="/admin-category-create" color="primary">
+    Tambah Kategori
+  </ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let category of categories">
+      <ion-label>{{ category.name }}</ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="tertiary" (click)="editCategory(category.id)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="deleteCategory(category.id)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>

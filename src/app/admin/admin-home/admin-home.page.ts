@@ -3,10 +3,37 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { Chart } from 'chart.js';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  Chart,
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+} from 'chart.js';
+
+// Register komponen yang digunakan
+Chart.register(
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
+
+import { AuthService } from 'src/app/services/auth.service'; // ⬅️ Pastikan ini sesuai path kamu
 
 @Component({
+  standalone: true,
   selector: 'app-admin-home',
   templateUrl: './admin-home.page.html',
   styleUrls: ['./admin-home.page.scss'],
@@ -17,7 +44,11 @@ export class AdminHomePage implements OnInit {
   totalOrders: number = 0;
   totalUsers: number = 0;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthService // ⬅️ Tambah ini
+  ) {}
 
   ngOnInit() {
     this.fetchDashboardData();
@@ -25,16 +56,30 @@ export class AdminHomePage implements OnInit {
   }
 
   fetchDashboardData() {
-    // Mengambil data untuk produk, transaksi, dan pengguna dari API
-    this.http.get<any>('http://localhost/api/dashboard').subscribe(data => {
+  const token = this.authService.getToken(); // Ambil token dari localStorage atau service
+
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+    Accept: 'application/json'  // WAJIB agar Laravel tahu kita minta JSON
+  });
+
+  const apiUrl = `${this.authService['apiUrl']}/admin/dashboard`;
+
+  this.http.get<any>(apiUrl, { headers }).subscribe({
+    next: (data) => {
       this.totalProducts = data.totalProducts;
       this.totalOrders = data.totalOrders;
       this.totalUsers = data.totalUsers;
-    });
-  }
+      // Kamu juga bisa pakai data.monthlyRevenue kalau mau
+    },
+    error: (err) => {
+      console.error('Gagal ambil data dashboard:', err);
+    }
+  });
+}
+
 
   initSalesChart() {
-    // Data untuk grafik penjualan
     const ctx = document.getElementById('salesChart') as HTMLCanvasElement;
     new Chart(ctx, {
       type: 'line',
@@ -42,7 +87,7 @@ export class AdminHomePage implements OnInit {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [{
           label: 'Sales',
-          data: [12, 19, 3, 5, 2, 9],  // Data penjualan untuk setiap bulan
+          data: [12, 19, 3, 5, 2, 9],
           borderColor: '#FF5C39',
           backgroundColor: 'rgba(255,92,57,0.2)',
           fill: true,
@@ -53,12 +98,12 @@ export class AdminHomePage implements OnInit {
         responsive: true,
         plugins: {
           legend: {
-            display: false  // Tidak menampilkan legend
+            display: false
           }
         },
         scales: {
           y: {
-            beginAtZero: true  // Mulai sumbu Y dari 0
+            beginAtZero: true
           }
         }
       }
@@ -66,6 +111,6 @@ export class AdminHomePage implements OnInit {
   }
 
   openMenu() {
-    document.querySelector('ion-menu')?.open();  // Membuka sidebar menu
+    document.querySelector('ion-menu')?.open();
   }
 }
