@@ -104,7 +104,7 @@ export const routes: Routes = [
   },
   {
     path: 'payment',
-    loadComponent: () => import('./customer/payment/payment.page').then(m => m.PaymentPage),
+    loadComponent: () => import('./payment/payment.page').then(m => m.PaymentPage),
   },
   {
   path: 'address-selection',
@@ -116,5 +116,13 @@ export const routes: Routes = [
   {
     path: 'checkout',
     loadComponent: () => import('./customer/checkout/checkout.page').then( m => m.CheckoutPage)
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./customer/profile/profile.page').then( m => m.ProfilePage)
+  },
+  {
+    path: 'account-settings',
+    loadComponent: () => import('./customer/account-settings/account-settings.page').then( m => m.AccountSettingsPage)
   },
 ];

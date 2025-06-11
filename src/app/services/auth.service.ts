@@ -97,4 +97,7 @@ export class AuthService {
 
     return this.http.post(`${this.apiUrl}/resend-verification`, {}, { headers });
   }
+  // Ambil data user lengkap dari /api/profile
+
+
 }

@@ -10,7 +10,7 @@ import { NewPasswordPage } from './new-password/new-password.page';
 import { VerifyPage } from './verify/verify.page';
 import { CompleteProfilePage } from './complete-profile/complete-profile.page';
 import { HomePage } from './home/home.page';
-import { PaymentPage } from './checkout/payment.page';
+import { PaymentPage } from '../payment/payment.page';
 
 @NgModule({
   declarations: [

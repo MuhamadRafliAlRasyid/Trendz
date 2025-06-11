@@ -38,10 +38,12 @@ export class AddressSelectionPage implements OnInit {
   }
 
   selectAddress(address: any) {
-    this.router.navigate(['/payment'], {
-      queryParams: { selectedAddress: JSON.stringify(address) },
-    });
-  }navigateToAddAddress() {
+  // Navigate back to CheckoutPage with the selected address as a query parameter
+  this.router.navigate(['/checkout'], {
+    queryParams: { selectedAddress: JSON.stringify(address) },
+  });
+}
+navigateToAddAddress() {
     this.router.navigate(['/address-form']);
   }
 }

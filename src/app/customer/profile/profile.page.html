@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <!-- Back button -->
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- User Profile Section -->
+  <ion-card class="profile-card" text-center>
+    <ion-card-content>
+      <ion-avatar class="profile-avatar">
+        <img [src]="user.profile_picture" alt="profile" />
+      </ion-avatar>
+      <h2>{{ user.name }}</h2>
+      <p>{{ user.email }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" (click)="changePassword()"
+    >Change Password</ion-button
+  >
+
+  <!-- Transaction Categories -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Status Transaksi</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div
+        *ngFor="let status of ['pending', 'paid', 'processed', 'shipped', 'delivered']"
+      >
+        <ion-item lines="none">
+          <ion-label>{{ status | titlecase }}</ion-label>
+          <ion-badge color="primary">
+            {{ categorizedTransactions[status]?.length || 0 }}
+          </ion-badge>
+        </ion-item>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Transactions for each category -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>My Orders</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div
+        *ngFor="let status of ['pending', 'paid', 'processed', 'shipped', 'delivered']"
+      >
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ status | titlecase }} Orders</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item
+                *ngFor="let transaction of categorizedTransactions[status]"
+              >
+                <ion-label>
+                  <h3>Order ID: {{ transaction.id }}</h3>
+                  <p>Status: {{ transaction.status }}</p>
+                  <p>Total Price: {{ transaction.total_price | currency }}</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

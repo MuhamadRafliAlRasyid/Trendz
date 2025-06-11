@@ -1,0 +1,91 @@
+/* General Card Style */
+.status-card {
+  --background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px; /* Add some space between cards */
+}
+
+/* Status Header Styling */
+.status-header {
+  background-color: #f1f1f1;
+  border-radius: 12px 12px 0 0;
+  padding: 16px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Styling for each status item (like pending, paid, etc.) */
+.status-item {
+  --background: transparent;
+  --color: #333;
+  padding: 12px 16px;
+  font-size: 16px;
+  --ion-item-border-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align badge and text */
+}
+
+/* Styling for the Ion Badge */
+ion-badge[color="primary"] {
+  font-size: 14px;
+  padding: 6px 10px;
+  background-color: #4f86f7;
+  color: white;
+  border-radius: 12px;
+}
+
+/* Styling for the Transactions Section */
+ion-card {
+  --background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px; /* Add some space between cards */
+}
+
+/* Styling for the Transaction Lists */
+ion-list {
+  padding: 0;
+}
+
+ion-item {
+  --background: transparent;
+  --color: #333;
+  --ion-item-border-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  font-size: 14px;
+}
+
+/* Title and content of the transaction cards */
+ion-card-title {
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+}
+
+ion-card-content {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Responsive Styling for Mobile View */
+@media (max-width: 768px) {
+  .status-header {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .status-item {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  ion-card-title {
+    font-size: 16px;
+  }
+}

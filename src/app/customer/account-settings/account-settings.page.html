@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Account Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="updateAccountSettings()">
+    <!-- Name -->
+    <ion-item lines="full">
+      <ion-label position="floating">Name</ion-label>
+      <ion-input [(ngModel)]="user.name" name="name" required></ion-input>
+    </ion-item>
+
+    <!-- New Password -->
+    <ion-item lines="full">
+      <ion-label position="floating">New Password</ion-label>
+      <ion-input
+        [(ngModel)]="user.password"
+        [type]="showPassword ? 'text' : 'password'"
+        name="password"
+      ></ion-input>
+      <ion-button
+        fill="clear"
+        slot="end"
+        size="small"
+        (click)="togglePasswordVisibility()"
+        type="button"
+      >
+        {{ showPassword ? 'Hide' : 'Show' }}
+      </ion-button>
+    </ion-item>
+
+    <!-- Confirm Password -->
+    <ion-item lines="full">
+      <ion-label position="floating">Confirm Password</ion-label>
+      <ion-input
+        [(ngModel)]="user.password_confirmation"
+        [type]="showPassword ? 'text' : 'password'"
+        name="password_confirmation"
+      ></ion-input>
+      <ion-button
+        fill="clear"
+        slot="end"
+        size="small"
+        (click)="togglePasswordVisibility()"
+        type="button"
+      >
+        {{ showPassword ? 'Hide' : 'Show' }}
+      </ion-button>
+    </ion-item>
+
+    <!-- Profile Image Upload -->
+    <ion-item lines="none" class="custom-file-upload">
+      <ion-label class="file-label">Profile Image</ion-label>
+      <input type="file" (change)="onFileChange($event)" accept="image/*" />
+    </ion-item>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <ion-button expand="block" type="submit" [disabled]="!user.name">
+        Update Settings
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
