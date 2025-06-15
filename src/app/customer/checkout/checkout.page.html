@@ -10,14 +10,14 @@
 <ion-content class="ion-padding">
   <div class="checkout-content">
     <!-- Shipping Address Section -->
-    <div class="shipping-address">
+    <div class="shipping-address" *ngIf="address">
       <ion-icon name="location-outline"></ion-icon>
       <div class="address-text">
-        <p class="name">{{ address.receiver_name }} +{{ address.phone }}</p>
+        <p class="name">{{ address?.receiver_name }} +{{ address?.phone }}</p>
         <p class="address">
-          {{ address.detail }},<br />
-          {{ address.district }}, {{ address.city }},<br />
-          {{ address.province }}, {{ address.postal_code }}<br />
+          {{ address?.detail }},<br />
+          {{ address?.district }}, {{ address?.city }},<br />
+          {{ address?.province }}, {{ address?.postal_code }}<br />
         </p>
       </div>
 
@@ -27,35 +27,57 @@
       >
     </div>
 
+    <!-- Jika alamat belum tersedia -->
+    <div *ngIf="!address">
+      <ion-text color="danger">
+        <p>
+          Alamat belum tersedia. Silakan tambahkan alamat pengiriman terlebih
+          dahulu.
+        </p>
+      </ion-text>
+      <ion-button expand="block" color="primary" (click)="changeAddress()"
+        >Tambah Alamat</ion-button
+      >
+    </div>
+
     <!-- Product List -->
-    <div class="product-list">
+    <div class="product-list" *ngIf="cart.length > 0">
       <div class="product-item" *ngFor="let item of cart">
-        <img [src]="item.product.image || 'assets/default.jpg'" />
+        <img [src]="item.product?.image || 'assets/default.jpg'" />
         <div class="product-details">
-          <p class="product-name">{{ item.product.name }}</p>
-          <p class="product-price">IDR {{ item.product.price | number }}</p>
+          <p class="product-name">{{ item.product?.name }}</p>
+          <p class="product-price">IDR {{ item.product?.price | number }}</p>
           <p class="product-meta">
-            {{ item.quantity }} item | {{ item.product.size }} | {{
-            item.product.color }}
+            {{ item.quantity }} item | {{ item.product?.size }} | {{
+            item.product?.color }}
           </p>
         </div>
       </div>
     </div>
 
     <!-- Payment Summary Section -->
-    <div class="payment-summary">
+    <div class="payment-summary" *ngIf="cart.length > 0">
       <div class="row bold">
         <span>Total {{ cart.length }} Item(s)</span>
         <span>IDR {{ subtotal | number }}</span>
       </div>
 
       <div class="row">
-        <span>Payment options</span>
-        <span
-          >Bank Transfer – Bank BCA
-          <ion-icon name="chevron-forward-outline"></ion-icon
-        ></span>
+        <span>Payment</span>
+        <span>
+          Bank Transfer VA and Qris
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </span>
       </div>
+      <ion-card class="shipping-box">
+        <ion-card-content>
+          <div class="shipping-header">
+            <span class="method">Regular</span>
+            <span class="price">IDR 10,000</span>
+          </div>
+          <p class="shipping-sub">Guaranteed to get by 5 - 6 May</p>
+        </ion-card-content>
+      </ion-card>
 
       <div class="row section-title">Payment details</div>
       <div class="row">
@@ -82,6 +104,13 @@
       </div>
 
       <ion-button expand="block" (click)="placeOrder()">Place Order</ion-button>
+    </div>
+
+    <!-- Jika keranjang kosong -->
+    <div *ngIf="cart.length === 0">
+      <ion-text color="medium">
+        <p>Keranjang kosong.</p>
+      </ion-text>
     </div>
   </div>
 </ion-content>

@@ -103,9 +103,10 @@ export const routes: Routes = [
     loadComponent: () => import('./customer/complete-profile/complete-profile.page').then(m => m.CompleteProfilePage),
   },
   {
-    path: 'payment',
-    loadComponent: () => import('./payment/payment.page').then(m => m.PaymentPage),
+    path: 'payment/:id',
+    loadComponent: () => import('./customer/payment/payment.page').then(m => m.PaymentPage)
   },
+
   {
   path: 'address-selection',
   loadComponent: () =>
@@ -125,4 +126,13 @@ export const routes: Routes = [
     path: 'account-settings',
     loadComponent: () => import('./customer/account-settings/account-settings.page').then( m => m.AccountSettingsPage)
   },
+  {
+    path: 'transaction-detail',
+    loadComponent: () => import('./customer/transaction-detail/transaction-detail.page').then( m => m.TransactionDetailPage)
+  },
+  {
+    path: 'transaction-success',
+    loadComponent: () => import('./customer/transaction-success/transaction-success.page').then( m => m.TransactionSuccessPage)
+  },
+
 ];

@@ -24,11 +24,13 @@ export class ProfilePage implements OnInit {
     delivered: [],
   };
 
+  selectedTransactionId: number | null = null;
+
   constructor(
     private authService: AuthService,
     private transactionService: TransactionService,
     private router: Router,
-    private http: HttpClient // ✅ tambahkan ini
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -37,46 +39,55 @@ export class ProfilePage implements OnInit {
   }
 
   loadUserData() {
-  const token = this.authService.getToken();
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${token}`,
-  });
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
 
-  this.http.get('http://localhost:8000/api/profile', { headers }).subscribe(
-    (response: any) => {
-      this.user = response.data;
-      console.log('User dari API profile:', this.user);
+    this.http.get('http://localhost:8000/api/profile', { headers }).subscribe(
+      (response: any) => {
+        this.user = response.data;
 
-      // Cek apakah ada gambar di path tertentu
-      if (this.user.profile_picture && !this.user.profile_picture.includes('default-avatar.png')) {
-        // Jika API sudah mengembalikan full URL (http://...), langsung pakai
-        this.user.profile_picture = this.user.profile_picture.startsWith('http')
-          ? this.user.profile_picture
-          : `http://localhost:8000/storage/${this.user.profile_picture}`;
-      } else {
-        // fallback default
-        this.user.profile_picture = 'assets/img/default-avatar.png';
+        if (
+          this.user.profile_picture &&
+          !this.user.profile_picture.includes('default-avatar.png')
+        ) {
+          this.user.profile_picture = this.user.profile_picture.startsWith('http')
+            ? this.user.profile_picture
+            : `http://localhost:8000/storage/${this.user.profile_picture}`;
+        } else {
+          this.user.profile_picture = 'assets/img/default-avatar.png';
+        }
+      },
+      (error) => {
+        console.error('Gagal ambil profil:', error);
       }
-    },
-    (error) => {
-      console.error('Gagal ambil profil:', error);
-    }
-  );
-}
-
-  changePassword() {
-    this.router.navigate(['/account-settings']);
+    );
   }
 
   getTransactionStatus() {
     this.transactionService.getStatusTransactions().subscribe(
       (data: any) => {
         this.categorizedTransactions = data;
-        console.log('Categorized Transactions:', data);
       },
       (error) => {
-        console.error('Failed to load transactions:', error);
+        console.error('Gagal memuat status transaksi:', error);
       }
     );
   }
+
+  changePassword() {
+    this.router.navigate(['/account-settings']);
+  }
+
+ toggleTransaction(id: number | null) {
+  this.selectedTransactionId = this.selectedTransactionId === id ? null : id;
+}
+
+
+
+  goToPayment(transactionId: number) {
+  this.router.navigate(['/payment', transactionId]);
+}
+
 }
