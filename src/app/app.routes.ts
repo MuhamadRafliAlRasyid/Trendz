@@ -131,8 +131,30 @@ export const routes: Routes = [
     loadComponent: () => import('./customer/transaction-detail/transaction-detail.page').then( m => m.TransactionDetailPage)
   },
   {
-    path: 'transaction-success',
-    loadComponent: () => import('./customer/transaction-success/transaction-success.page').then( m => m.TransactionSuccessPage)
+  path: 'transaction-success',
+  loadComponent: () =>
+    import('./customer/transaction-success/transaction-success.page').then(m => m.TransactionSuccessPage)
+},
+
+  {
+    path: 'wishlist',
+    loadComponent: () => import('./customer/wishlist/wishlist.page').then( m => m.WishlistPage)
+  },
+  {
+    path: 'loginKurir',
+    loadComponent: () => import('./courier/courier-login/courier-login.page').then( m => m.CourierLoginPage)
+  },
+  {
+    path: 'kurir-home',
+    loadComponent: () => import('./courier/courier-dashboard/courier-dashboard.page').then( m => m.CourierDashboardPage)
+  },
+  {
+    path: 'tracking',
+    loadComponent: () => import('./courier/tracking/tracking.page').then( m => m.TrackingPage)
+  },
+  {
+    path: 'registerKurir',
+    loadComponent: () => import('./courier/register-courier/register-courier.page').then( m => m.RegisterCourierPage)
   },
 
 ];

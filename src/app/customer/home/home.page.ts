@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, MenuController, ActionSheetController } from '@ionic/angular';
 import { ProductService, Product } from 'src/app/services/product.service';
 import { CartService } from 'src/app/services/cart.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
@@ -31,6 +32,7 @@ export class HomePage implements OnInit {
     private productService: ProductService,
     private authService: AuthService,
     private cartService: CartService,
+    private wishlistService: WishlistService,
     private http: HttpClient,
     private actionSheetController: ActionSheetController
   ) {}
@@ -63,7 +65,7 @@ export class HomePage implements OnInit {
   }
 
   get filteredProducts(): Product[] {
-    return this.products; // No filter for now
+    return this.products;
   }
 
   onSegmentChanged(event: any) {
@@ -83,6 +85,24 @@ export class HomePage implements OnInit {
     this.cartService.addCartItem(cartData).subscribe({
       next: (res) => console.log('Item added to cart', res),
       error: (err) => console.error('Error adding item to cart', err),
+    });
+  }
+
+  addToWishlist(item: Product) {
+    const alreadyInWishlist = this.wishlist.find(p => p.id === item.id);
+    if (alreadyInWishlist) {
+      console.log('Produk sudah ada di wishlist');
+      return;
+    }
+
+    this.wishlistService.addToWishlist(item.id).subscribe({
+      next: () => {
+        this.wishlist.push(item);
+        console.log('Berhasil ditambahkan ke wishlist');
+      },
+      error: (err) => {
+        console.error('Gagal tambah ke wishlist', err);
+      }
     });
   }
 
@@ -177,10 +197,6 @@ export class HomePage implements OnInit {
     this.searchHistory = this.searchHistory.filter(t => t !== term);
     localStorage.setItem('searchHistory', JSON.stringify(this.searchHistory));
   }
-
-  addToWishlist(item: Product) {
-    if (!this.wishlist.find(p => p.id === item.id)) {
-      this.wishlist.push(item);
-    }
-  }
 }
+
+

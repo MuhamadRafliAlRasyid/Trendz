@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard Kurir</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">Logout</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="deliveries && deliveries.length > 0; else noData">
+    <ion-item *ngFor="let item of deliveries">
+      <ion-label>
+        <p><strong>Order ID:</strong> {{ item.transaction?.order_id }}</p>
+        <p><strong>Status:</strong> {{ item.status }}</p>
+      </ion-label>
+      <ion-button
+        color="success"
+        (click)="updateStatus(item.id)"
+        *ngIf="item.status === 'in_progress'"
+      >
+        Selesaikan
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noData>
+    <ion-text color="medium">Tidak ada pengiriman tersedia.</ion-text>
+  </ng-template>
+</ion-content>

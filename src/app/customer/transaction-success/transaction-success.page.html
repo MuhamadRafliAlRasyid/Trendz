@@ -1,11 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Transaksi Berhasil</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="ion-padding">
-  <h2>Terima kasih!</h2>
-  <p>Transaksi Anda berhasil.</p>
-  <ion-button routerLink="/home">Kembali ke Beranda</ion-button>
+  <h2>🎉 Pembayaran Berhasil</h2>
+  <p><strong>Order ID:</strong> {{ transaction.order_id }}</p>
+  <p><strong>Tanggal:</strong> {{ transaction.date }}</p>
+  <p>
+    <strong>Status:</strong>
+    <ion-badge color="success">{{ transaction.status }}</ion-badge>
+  </p>
+
+  <ion-list>
+    <ion-item *ngFor="let item of transaction.items">
+      <ion-label>
+        <h3>{{ item.product_name || item.name }}</h3>
+        <p>Qty: {{ item.qty || item.quantity }}</p>
+        <p>Harga: Rp {{ item.price?.toLocaleString() }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-item lines="full">
+    <ion-label><strong>Total</strong></ion-label>
+    <ion-note slot="end"
+      ><strong>Rp {{ transaction.total?.toLocaleString() }}</strong></ion-note
+    >
+  </ion-item>
+
+  <ion-button expand="block" color="primary" (click)="generatePDF()">
+    📄 Download Struk PDF
+  </ion-button>
 </ion-content>

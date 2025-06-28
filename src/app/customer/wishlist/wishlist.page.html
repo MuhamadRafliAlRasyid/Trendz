@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Wishlist</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="wishlistItems.length > 0; else empty">
+  <ion-list>
+    <ion-item
+      *ngFor="let item of wishlistItems"
+      (click)="viewProduct(item.product.id)"
+    >
+      <ion-thumbnail slot="start">
+        <img
+          [src]="item.product.image"
+          alt="{{ item.product.name }}"
+          (error)="onImageError($event)"
+        />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ item.product.name }}</h2>
+        <p>IDR {{ item.product.price | number }}</p>
+      </ion-label>
+      <ion-button
+        fill="clear"
+        slot="end"
+        color="danger"
+        (click)="removeFromWishlist(item.product.id); $event.stopPropagation();"
+      >
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ng-template #empty>
+  <ion-content class="ion-padding">
+    <div class="empty-wishlist">
+      <ion-icon name="heart-outline" size="large" color="medium"></ion-icon>
+      <h3>Your wishlist is empty</h3>
+      <p>Start adding your favorite products now.</p>
+    </div>
+  </ion-content>
+</ng-template>

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   imports: [IonApp, IonRouterOutlet]
 })
 export class AppComponent {
+
   constructor(private platform: Platform, private router: Router) {
     this.initializeApp();
   }
